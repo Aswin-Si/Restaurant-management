@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>Category Details</h2>
+</div><br><br>
+<div class="card-body">
+<!--                    <h4 class="card-title">Cate</h4>-->
+<!--                    <p class="card-description"> Add class <code>.table-striped</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> Category </th>
+                            <th> Category Image </th>
+                            <th> Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in cat %}
+                          <tr>
+                            <td>{{i.CategoryName}}</td>
+                            <td>
+                              <img src="{{i.CategoryImage.url}}" height="100px" width="100px">
+                            </td>
+                              <td>
+                                  <form action="{% url 'categoryedit' Categoryid=i.id %}">
+                                       <button type="submit" class="btn btn-outline-secondary mr-2">Edit</button>
+                                  </form><br>
+                                  <form action="{% url 'deletecategory' Categoryid=i.id %}">
+                                       <button class="btn btn-outline-primary">Delete</button>
+                                  </form>
+                              </td>
+                          </tr>
+
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+{% if messages %}
+  {% for i in messages %}
+    {% if i.tags == 'warning' %}
+        <script>
+           swal('{{i}}','','warning');
+        </script>
+    {% elif i.tags == 'error' %}
+        <script>
+           swal('{{i}}','','error');
+        </script>
+    {% elif i.tags == 'success' %}
+        <script>
+           swal('{{i}}','','success');
+        </script>
+    {% else %}
+        <script>
+           swal('{{i}}','','info');
+        </script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

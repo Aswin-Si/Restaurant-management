@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>SIGNUP DETAILS</h2>
+</div>
+<div class="card">
+                  <div class="card-body">
+<!--                    <h4 class="card-title">Basic Table</h4>-->
+<!--                    <p class="card-description"> Add class <code>.table</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email Id</th>
+                            <th>Mobile</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in signup %}
+                          <tr>
+                            <td>{{i.Name}}</td>
+                            <td>{{i.EmailId}}</td>
+                            <td>{{i.Mobile}}</td>
+                            <td>{{i.UserName}}</td>
+                            <td>{{i.Password}}</td>
+                             <td>
+                                  <form action="{% url 'deletesignup' Loginid=i.id %}">
+                                       <button class="btn btn-outline-primary">Delete</button>
+                                  </form>
+                              </td>
+
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}

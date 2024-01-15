@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h2>CONTACT DETAILS</h2>
+</div>
+<div class="card">
+                  <div class="card-body">
+<!--                    <h4 class="card-title">Basic Table</h4>-->
+<!--                    <p class="card-description"> Add class <code>.table</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in contact %}
+                          <tr>
+                            <td>{{d.Name}}</td>
+                            <td>{{d.EmailId}}</td>
+                            <td>{{d.Phone}}</td>
+                            <td>{{d.Message}}</td>
+                             <td>
+                                  <form action="{% url 'deletecontact' Contactid=d.id %}">
+                                       <button class="btn btn-outline-primary">Delete</button>
+                                  </form>
+                              </td>
+
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}

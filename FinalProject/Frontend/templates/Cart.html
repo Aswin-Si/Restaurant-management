@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Cart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'styles/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/fonts/themify/themify-icons.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/lightbox2/css/lightbox.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="wrap-menu-header gradient1 trans-0-4">
+			<div class="container h-full">
+				<div class="wrap_header trans-0-3">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="{% url 'homepage' %}">
+							<img src="{% static 'styles/images/icons/logo.png' %}" alt="IMG-LOGO" data-logofixed="{% static 'styles/images/icons/logo2.png' %}">
+						</a>
+					</div>
+
+					<!-- Menu -->
+					<div class="wrap_menu p-l-45 p-l-0-xl">
+						<nav class="menu">
+							<ul class="main_menu">
+								<li>
+									<a href="{% url 'homepage' %}">Home</a>
+								</li>
+
+								<li>
+									<a href="{% url 'menupage' %}">Menu</a>
+								</li>
+
+								<li>
+									<a href="{% url 'reservationpage' %}">Reservation</a>
+								</li>
+
+								<li>
+									<a href="{% url 'Gallerypage' %}">Gallery</a>
+								</li>
+
+								<li>
+									<a href="{% url 'aboutpage' %}">About</a>
+								</li>
+
+								<li>
+									<a href="{% url 'contactpage' %}">Contact</a>
+								</li>
+
+								{% if request.session.UserName %}
+								<li>
+									<a href="{% url 'userlogout' %}">Welcome, {{request.session.UserName}}</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="{% url 'loginpage' %}">Register/Login</a>
+								</li>
+								{% endif %}
+
+							</ul>
+						</nav>
+					</div>
+
+					<!-- Social -->
+					<div class="social flex-w flex-l-m p-r-20">
+						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<aside class="sidebar trans-0-4">
+		<!-- Button Hide sidebar -->
+		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
+
+		<!-- - -->
+		<ul class="menu-sidebar p-t-95 p-b-70">
+			<li class="t-center m-b-13">
+				<a href="{% url 'homepage' %}" class="txt19">Home</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'menupage' %}" class="txt19">Menu</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'cartpage' %}" class="txt19">My Cart</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'orderpage' %}" class="txt19">My Order</a>
+			</li>
+
+			<li class="t-center m-b-13">
+				<a href="{% url 'userlogout' %}" class="txt19">Logout</a>
+			</li>
+
+			<li class="t-center">
+				<!-- Button3 -->
+				<a href="{% url 'reservationpage' %}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+					Reservation
+				</a>
+			</li>
+		</ul>
+
+
+
+		</div>
+	</aside>
+
+	<!-- Title Page -->
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({% static 'styles/images/bg-title-page-03.jpg' %});">
+		<h2 class="tit6 t-center">
+			Our Cart
+		</h2>
+	</section>
+
+
+	<!-- Our Story -->
+
+<div class="container mt-5 p-3 rounded cart">
+
+        <div class="row no-gutters">
+            <div class="col-md-8">
+                <div class="product-details mr-2">
+                    <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2"><a href="{% url 'menupage' %}">Continue Shopping</a></span></div>
+
+                    <hr>
+                    <h4 class="mb-0">Shopping cart</h4><br>
+<!--                    <div class="d-flex justify-content-between"><span>You have 4 items in your cart</span>-->
+<!--&lt;!&ndash;                        <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort by:</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+                  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+
+
+      <td>{{i.ProductName}}</td>
+      <td>{{i.Quantity}}</td>
+      <td>{{i.TotalPrice}}</td>
+		<td>
+			<a href="{% url 'deletecartdetail' cartid=i.id %}"><i class="fa fa-close"></i> </a>
+		</td>
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="payment-info">
+                    <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png"/></span> </label>
+
+<label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png"/></span> </label>
+
+<label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png"/></span> </label>
+
+
+<label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png"/></span> </label>
+                    <div><label class="credit-card-label">Name on card</label><input type="text" class="form-control credit-inputs" placeholder="Name" required></div>
+                    <div><label class="credit-card-label">Card number</label><input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000" required></div>
+                    <div class="row">
+                        <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text" class="form-control credit-inputs" placeholder="00/00" required></div>
+                        <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="000" required></div>
+                    </div>
+                    <hr class="line">
+                    <div class="d-flex justify-content-between information"><span>Subtotal</span><span>Rs. {{total_price}}</span></div>
+                    <div class="d-flex justify-content-between information"><span>Delivery Fee</span><span>Free</span></div>
+                    <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>Rs. {{total_price}}</span></div></div>
+            </div>
+        </div>
+	</div>
+	<form method="post" action="{% url 'checkoutdata' %}" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div  class="container mt-5 p-3 rounded cart">
+		<h3 style="text-align: center;">Billing Address</h3><br>
+			<input type="hidden" value="" name="">
+			<input type="hidden" value="" name="">
+			<input type="hidden" value="" name="">
+		<input class="form-control form-control-lg" name="name" type="text" placeholder="Name" aria-label=".form-control-lg example" style="border-radius: 2pxsolidblack;" required><br>
+		<input class="form-control form-control-lg" name="phone" type="text" placeholder="Mobile Number" aria-label=".form-control-lg example" style="width: 500px;" required>
+		<input class="form-control form-control-lg" name="mail" type="text" placeholder="Email Id" aria-label=".form-control-lg example" style="width: 500px; margin-left: 550px; margin-top: -48px;" required><br>
+		<input class="form-control form-control-lg" type="text" placeholder="Flat/House No." aria-label=".form-control-lg example" style="width: 500px;" required>
+		<input class="form-control form-control-lg" type="text" placeholder="Area/Locality" aria-label=".form-control-lg example" style="width: 500px; margin-left: 550px; margin-top: -48px;" required><br>
+		<input class="form-control form-control-lg" name="address" type="text" placeholder="Nearby Landmark" aria-label=".form-control-lg example" style="width: 500px;" required>
+		<input class="form-control form-control-lg" type="text" placeholder="PINCODE" aria-label=".form-control-lg example" style="width: 500px; margin-left: 550px; margin-top: -48px;"required><br><br>
+		<button class="btn-outline-secondary" style="width: 400px; height: 50px; margin-left: 400px; border-radius: 6px; font-size: 30px; font-weight: bolder; color: red;" type="submit">Place Order</button>
+
+
+</div>
+	</form>
+
+	</div>
+
+
+
+	<!-- Sign up -->
+	<div class="section-signup bg1-pattern p-t-85 p-b-85">
+		<form class="flex-c-m flex-w flex-col-c-m-lg p-l-5 p-r-5">
+			<span class="txt5 m-10">
+				Specials Sign up
+			</span>
+
+			<div class="wrap-input-signup size17 bo2 bo-rad-10 bgwhite pos-relative txt10 m-10">
+				<input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email-address" placeholder="Email Adrress">
+				<i class="fa fa-envelope ab-r-m m-r-18" aria-hidden="true"></i>
+			</div>
+
+			<!-- Button3 -->
+			<button type="submit" class="btn3 flex-c-m size18 txt11 trans-0-4 m-10">
+				Sign-up
+			</button>
+		</form>
+	</div>
+
+	<!-- Footer -->
+	<footer class="bg1">
+		<div class="container p-t-40 p-b-70">
+			<div class="row">
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-33">
+						Contact Us
+					</h4>
+
+					<ul class="m-b-70">
+						<li class="txt14 m-b-14">
+							<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+							BOT Junction, Kochi, Kerala
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+							+91 9875202515
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+							pato.com
+						</li>
+					</ul>
+
+					<!-- - -->
+					<h4 class="txt13 m-b-32">
+						Opening Times
+					</h4>
+
+					<ul>
+						<li class="txt14">
+							09:30 AM – 11:00 PM
+						</li>
+
+						<li class="txt14">
+							Every Day
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-33">
+						Links
+					</h4>
+                    <div style="color: white;">
+                        <a href="{% url 'homepage' %}">Home</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'menupage' %}">Menu</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'reservationpage' %}">Reservation</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'Gallerypage' %}">Gallery</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'aboutpage' %}">About</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'contactpage' %}">Contact</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'cartpage' %}">My Cart</a>
+                    </div>
+
+
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-38">
+						Gallery
+					</h4>
+
+					<!-- Gallery footer -->
+					<div class="wrap-gallery-footer flex-w">
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-01.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-01.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-02.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-02.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-03.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-03.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-04.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-04.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-05.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-05.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-06.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-06.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-07.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-07.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-08.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-08.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-09.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-09.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-10.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-10.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-11.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-11.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-12.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-12.jpg' %}" alt="GALLERY">
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="end-footer bg2">
+			<div class="container">
+				<div class="flex-sb-m flex-w p-t-22 p-b-22">
+					<div class="p-t-5 p-b-5">
+						<a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+						<a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+						<a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+					</div>
+
+					<div class="txt17 p-r-20 p-t-5 p-b-5">
+						Copyright &copy; 2018 All rights reserved  |  <a href="{% url 'homepage' %}" target="_blank">Pato Restaurant</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
+				<div class="video-mo-01">
+					<iframe src="https://www.youtube.com/embed/5k1hSu2gdKE?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <style>
+.payment-info {
+  background: blue;
+  padding: 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.product-details {
+  padding: 10px;
+}
+
+body {
+  background: #eee;
+}
+
+.cart {
+  background: #fff;
+}
+
+.p-about {
+  font-size: 12px;
+}
+
+.table-shadow {
+  -webkit-box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
+  box-shadow: 5px 5px 15px -2px rgba(0,0,0,0.42);
+}
+
+.type {
+  font-weight: 400;
+  font-size: 10px;
+}
+
+label.radio {
+  cursor: pointer;
+}
+
+label.radio input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+label.radio span {
+  padding: 1px 12px;
+  border: 2px solid #ada9a9;
+  display: inline-block;
+  color: #8f37aa;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+label.radio input:checked + span {
+  border-color: #fff;
+  background-color: blue;
+  color: #fff;
+}
+
+.credit-inputs {
+  background: rgb(102,102,221);
+  color: #fff !important;
+  border-color: rgb(102,102,221);
+}
+
+.credit-inputs::placeholder {
+  color: #fff;
+  font-size: 13px;
+}
+
+.credit-card-label {
+  font-size: 9px;
+  font-weight: 300;
+}
+
+.form-control.credit-inputs:focus {
+  background: rgb(102,102,221);
+  border: rgb(102,102,221);
+}
+
+.line {
+  border-bottom: 1px solid rgb(102,102,221);
+}
+
+.information span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.information {
+  margin-bottom: 5px;
+}
+
+.items {
+  -webkit-box-shadow: 5px 5px 4px -1px rgba(0,0,0,0.25);
+  box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.08);
+}
+
+.spec {
+  font-size: 11px;
+}
+    </style>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/bootstrap/js/popper.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/slick/slick.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/parallax100/parallax100.js' %}"></script>
+	<script type="text/javascript">
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/lightbox2/js/lightbox.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/isotope/isotope.pkgd.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'styles/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Items</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'styles/images/icons/favicon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/fonts/themify/themify-icons.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/slick/slick.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/vendor/lightbox2/css/lightbox.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="wrap-menu-header gradient1 trans-0-4">
+			<div class="container h-full">
+				<div class="wrap_header trans-0-3">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="{% url 'homepage' %}">
+							<img src="{% static 'styles/images/icons/logo.png' %}" alt="IMG-LOGO" data-logofixed="{% static 'styles/images/icons/logo2.png' %}">
+						</a>
+					</div>
+
+					<!-- Menu -->
+					<div class="wrap_menu p-l-45 p-l-0-xl">
+						<nav class="menu">
+							<ul class="main_menu">
+								<li>
+									<a href="{% url 'homepage' %}">Home</a>
+								</li>
+
+								<li>
+									<a href="{% url 'menupage' %}">Menu</a>
+								</li>
+
+								<li>
+									<a href="{% url 'reservationpage' %}">Reservation</a>
+								</li>
+
+								<li>
+									<a href="{% url 'Gallerypage' %}">Gallery</a>
+								</li>
+
+								<li>
+									<a href="{% url 'aboutpage' %}">About</a>
+								</li>
+
+								<li>
+									<a href="{% url 'contactpage' %}">Contact</a>
+								</li>
+
+								{% if request.session.UserName %}
+								<li>
+									<a href="{% url 'userlogout' %}">Welcome, {{request.session.UserName}}</a>
+								</li>
+								{% else %}
+								<li>
+									<a href="{% url 'loginpage' %}">Register/Login</a>
+								</li>
+								{% endif %}
+							</ul>
+						</nav>
+					</div>
+					<div class="social flex-w flex-l-m p-r-20">
+						<button class="btn-show-sidebar m-l-33 trans-0-4"></button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<aside class="sidebar trans-0-4">
+		<!-- Button Hide sidebar -->
+		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
+
+		<!-- - -->
+		<ul class="menu-sidebar p-t-95 p-b-70">
+			<li class="t-center m-b-13">
+				<a href="{% url 'homepage' %}" class="txt19">Home</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'menupage' %}" class="txt19">Menu</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'cartpage' %}" class="txt19">My Cart</a>
+			</li>
+			<li class="t-center m-b-13">
+				<a href="{% url 'orderpage' %}" class="txt19">My Order</a>
+			</li>
+
+			<li class="t-center m-b-13">
+				<a href="{% url 'userlogout' %}" class="txt19">Logout</a>
+			</li>
+
+			<li class="t-center">
+				<!-- Button3 -->
+				<a href="{% url 'reservationpage' %}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+					Reservation
+				</a>
+			</li>
+		</ul>
+
+
+
+		</div>
+	</aside>
+
+
+	<!-- Title Page -->
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({% static 'styles/images/bg-title-page-02.jpg' %});">
+		<h2 class="tit6 t-center">
+			ITEMS
+		</h2>
+	</section>
+
+
+	<!-- Reservation -->
+	<section class="section-lunch bgwhite">
+<!--		<div class="header-lunch parallax0 parallax100" style="background-image: url({{i.CategoryImage.url}});">-->
+<!--			<div class="bg1-overlay t-center p-t-170 p-b-165">-->
+<!--				<h2 class="tit4 t-center">-->
+<!--					{{d.Category_Name}}-->
+<!--				</h2>-->
+<!--			</div>-->
+<!--		</div>-->
+
+		<div class="container">
+			<div class="row p-t-108 p-b-70">
+				<div class="col-md-8 col-lg-6 m-l-r-auto">
+					{% for d in filtered %}
+					<!-- Block3 -->
+					<div class="blo3 flex-w flex-col-l-sm m-b-30">
+						<div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28 ">
+							<a href="#"><img src="{{d.ProductImage.url}}" alt="IMG-MENU"></a>
+						</div>
+
+						<div class="text-blo3 size21 flex-col-l-m">
+							<a href="{% url 'singleproduct' productid=d.id %}" class="txt21 m-b-3">
+								{{d.ProductName}}
+							</a>
+
+							<span class="txt23">
+								{{d.Description}}
+							</span>
+
+							<span class="txt22 m-t-20">
+								Rs. {{d.ProductPrice}}
+							</span>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer -->
+	<footer class="bg1">
+		<div class="container p-t-40 p-b-70">
+			<div class="row">
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-33">
+						Contact Us
+					</h4>
+
+					<ul class="m-b-70">
+						<li class="txt14 m-b-14">
+							<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+							BOT Junction, Kochi, Kerala
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+							+91 9875202515
+						</li>
+
+						<li class="txt14 m-b-14">
+							<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+							pato.com
+						</li>
+					</ul>
+
+					<!-- - -->
+					<h4 class="txt13 m-b-32">
+						Opening Times
+					</h4>
+
+					<ul>
+						<li class="txt14">
+							09:30 AM – 11:00 PM
+						</li>
+
+						<li class="txt14">
+							Every Day
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-33">
+						Links
+					</h4>
+                    <div style="color: white;">
+                        <a href="{% url 'homepage' %}">Home</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'menupage' %}">Menu</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'reservationpage' %}">Reservation</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'Gallerypage' %}">Gallery</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'aboutpage' %}">About</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'contactpage' %}">Contact</a>
+                    </div><br>
+                    <div style="color: white;">
+                        <a href="{% url 'cartpage' %}">My Cart</a>
+                    </div>
+
+
+				</div>
+
+				<div class="col-sm-6 col-md-4 p-t-50">
+					<!-- - -->
+					<h4 class="txt13 m-b-38">
+						Gallery
+					</h4>
+
+					<!-- Gallery footer -->
+					<div class="wrap-gallery-footer flex-w">
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-01.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-01.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-02.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-02.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-03.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-03.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-04.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-04.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-05.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-05.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-06.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-06.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-07.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-07.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-08.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-08.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-09.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-09.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-10.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-10.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-11.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-11.jpg' %}" alt="GALLERY">
+						</a>
+
+						<a class="item-gallery-footer wrap-pic-w" href="{% static 'styles/images/photo-gallery-12.jpg' %}" data-lightbox="gallery-footer">
+							<img src="{% static 'styles/images/photo-gallery-thumb-12.jpg' %}" alt="GALLERY">
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="end-footer bg2">
+			<div class="container">
+				<div class="flex-sb-m flex-w p-t-22 p-b-22">
+					<div class="p-t-5 p-b-5">
+						<a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
+						<a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18" aria-hidden="true"></i></a>
+						<a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18" aria-hidden="true"></i></a>
+					</div>
+
+					<div class="txt17 p-r-20 p-t-5 p-b-5">
+						Copyright &copy; 2018 All rights reserved  |  <a href="{% url 'homepage' %}" target="_blank">Pato Restaurant</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection1 -->
+	<div id="dropDownSelect1"></div>
+
+
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/bootstrap/js/popper.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/daterangepicker/moment.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/slick/slick.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'styles/js/slick-custom.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/parallax100/parallax100.js' %}"></script>
+	<script type="text/javascript">
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{% static 'styles/vendor/lightbox2/js/lightbox.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'styles/js/main.js' %}"></script>
+
+</body>
+</html>

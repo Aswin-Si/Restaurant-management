@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>BOOKING DETAILS</h2>
+</div>
+<div class="card">
+                  <div class="card-body">
+<!--                    <h4 class="card-title">Basic Table</h4>-->
+<!--                    <p class="card-description"> Add class <code>.table</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>UserName</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Persons</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in reservation %}
+                          <tr>
+                            <td>{{d.Username}}</td>
+                            <td>{{d.Name}}</td>
+                            <td>{{d.Phone}}</td>
+                            <td>{{d.Email}}</td>
+                            <td>{{d.Date}}</td>
+                            <td>{{d.Time}}</td>
+                            <td>{{d.Person}}</td>
+                             <td>
+                                  <form action="{% url 'deletereservation' Tableid=d.id %}">
+                                       <button class="btn btn-outline-primary">Delete</button>
+                                  </form>
+                              </td>
+
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+</body>
+</html>
+{% endblock %}
